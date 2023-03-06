@@ -8,7 +8,8 @@ import "./globals.css";
  */
 export const metadata = {
   title: "Dreamify",
-  description: "A simple generator of images from AI. Using Stable Diffusion. Built on Next.js 13.2",
+  description:
+    "A simple generator of images from AI. Using Stable Diffusion. Built on Next.js 13.2",
 };
 
 const inter = Inter({ subsets: ["latin"] });

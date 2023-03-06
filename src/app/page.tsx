@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { Inter } from "next/font/google";
 import { useState } from "react";
 import Head from "next/head";
 import { Loader2 } from "lucide-react";

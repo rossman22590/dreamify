@@ -13,6 +13,19 @@ export const metadata = {
   title: "Dreamify",
   description:
     "A simple generator of images from AI. Using Stable Diffusion. Built on Next.js 13.2",
+  keywords: ["stable-diffusion", "machine-learning"],
+  generator: "Next.js",
+  openGraph: {
+    siteName: "Dreamify",
+    images: [
+      {
+        url: "https://dreamify-art.vercel.app/",
+        width: 800,
+        height: 600,
+      },
+    ],
+    type: "website",
+  },
 };
 
 const inter = Inter({ subsets: ["latin"] });

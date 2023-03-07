@@ -41,17 +41,17 @@ export default function RootLayout({
                 <a
                   href="https://github.com/360macky"
                   target="_blank"
-                  className="hover:underline"
+                  className="hover:underline underline-offset-4"
                 >
                   Marcelo Arias
                 </a>
               </span>
             </div>
-            <div className="">
+            <div>
               <ul className="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                 <li>
                   <a
-                    href="https://gitub.com/"
+                    href="https://github.com/360macky/dreamify"
                     target="_blank"
                     className="mr-4 hover:underline md:mr-6 "
                   >
@@ -60,7 +60,7 @@ export default function RootLayout({
                 </li>
                 <li>
                   <a
-                    href="https://gitub.com/"
+                    href="https://github.com/360macky/dreamify/blob/main/LICENSE"
                     target="_blank"
                     className="mr-4 hover:underline md:mr-6"
                   >

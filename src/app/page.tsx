@@ -13,11 +13,13 @@ export default function Home() {
       <section className="flex justify-center flex-col items-center py-6 lg:py-12 gap-y-6 lg:gap-y-12">
         <h1 className="text-4xl lg:text-7xl font-extrabold text-center leading-snug lg:leading-tight">
           Generates an{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-tr from-blue-400 to-blue-600">
+          <span className="text-transparent bg-clip-text bg-gradient-to-tr from-blue-400 to-blue-600 dark:from-blue-400 dark:to-blue-200">
             image
           </span>{" "}
           <br className="hidden lg:inline-block" /> just from{" "}
-          <span className="bg-black text-white">[text]</span>
+          <span className="bg-black text-white dark:text-black dark:bg-white">
+            [text]
+          </span>
         </h1>
         <p className=" lg:text-xl text-slate-800 dark:text-slate-200 text-center">
           Powered by{" "}

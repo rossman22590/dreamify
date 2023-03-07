@@ -27,7 +27,7 @@ export default function RootLayout({
         <header className="flex flex-row items-center gap-x-4 justify-center">
           <Link href="/" className="flex flex-row items-center gap-x-4">
             <ImageIcon className="h-10 w-10 text-blue-600 dark:text-blue-400" />
-            <h1 className="text-4xl leading-normal text-center my-8 font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-700 select-none dark:from-blue-400 dark:to-blue-400">
+            <h1 className="text-4xl leading-normal text-center my-8 font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-700 select-none dark:from-white dark:to-white">
               Dreamify
             </h1>
           </Link>

@@ -3,24 +3,20 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Loader2, Wand2 } from "lucide-react";
+import { Download, Flower2, Loader2, Wand2 } from "lucide-react";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
  * @name PredictionStatus
- * @description The status of a prediction
+ * @description The status of a prediction not related to the Replicate API
  * @type {string}
- * initial: Default status
- * starting: The prediction has been sent to the server
  */
 type PredictionStatus =
   | "initial"
-  | "starting"
-  | "processing"
-  | "succeeded"
-  | "failed"
-  | "canceled";
+  | "loading"
+  | "error"
+  | "succeeded";
 
 export default function Page() {
   const [prompt, setPrompt] = useState<string>("");
@@ -29,6 +25,10 @@ export default function Page() {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [predictionStatus, setPredictionStatus] =
     useState<PredictionStatus>("initial");
+
+  const replaceSpacesWithDashes = (str: string) => {
+    return str.replace(/\s+/g, "-").toLowerCase();
+  };
 
   /**
    * @name handleDownloadImage
@@ -40,7 +40,7 @@ export default function Page() {
     document.body.appendChild(a);
     const blob = await fetch(imageUrl).then((r) => r.blob());
     a.href = window.URL.createObjectURL(blob);
-    a.setAttribute("download", "generated-image.png");
+    a.setAttribute("download", `${replaceSpacesWithDashes(prompt)}.png`);
     a.click();
   };
 
@@ -62,9 +62,11 @@ export default function Page() {
     let prediction = await response.json();
     if (response.status !== 201) {
       setError(prediction.detail);
+      setPredictionStatus("error");
       return;
     }
     setPrediction(prediction);
+    setPredictionStatus("loading");
 
     // Poll for prediction status
     while (
@@ -76,9 +78,13 @@ export default function Page() {
       prediction = await response.json();
       if (response.status !== 200) {
         setError(prediction.detail);
+        setPredictionStatus("error");
         return;
       }
-      console.log(prediction);
+      if (prediction.status === "succeeded") {
+        setImageUrl(prediction.output[prediction.output.length - 1]);
+        setPredictionStatus("succeeded");
+      }
       setPrediction(prediction);
     }
   };
@@ -102,39 +108,47 @@ export default function Page() {
         </Button>
       </form>
 
-      {(prediction && prediction.status === "starting") ||
-        (prediction && prediction.status === "processing" && (
-          <div className="m-auto max-w-lg pt-8 flex justify-center">
-            <Loader2 className="mr-2 h-12 w-12 animate-spin text-blue-500 dark:text-white" />
+      <div className="m-auto max-w-lg mt-3 lg:mt-6">
+        <div>
+          <div className="w-full relative aspect-square rounded bg-slate-100 flex flex-col justify-center items-center gap-y-4">
+            {prediction && prediction.output ? (
+              <Image
+                fill
+                src={prediction.output[prediction.output.length - 1]}
+                alt="output"
+                sizes="100vw"
+                className="rounded-lg"
+              />
+            ) : (
+              <>
+                {(prediction && prediction.status === "processing") || (prediction && prediction.status === "starting") ? (
+                  <Loader2 className="mr-2 h-12 w-12 animate-spin text-slate-700 dark:text-white" />
+                ) : (
+                  <Flower2 className="h-12 w-12 text-slate-700" />
+                )}
+                <p className="text-slate-700" role="status">
+                  {prediction && prediction.status === "starting" && "Starting the model..."}
+                  {prediction && prediction.status === "processing" && "Creating the image..."}
+                  {predictionStatus === "initial" && "Here you can see the generated image..." }
+                  {predictionStatus === "error" && error}
+                </p>
+              </>
+            )}
           </div>
-        ))}
-
-      <div className="m-auto max-w-lg mt-3 lg:mt-6 text-center">
-        {error && <p className="text-red-400 dark:text-red-300">{error}</p>}
-      </div>
-
-      {prediction && (
-        <div className="m-auto max-w-lg mt-3 lg:mt-6">
-          {prediction.output && (
-            <div>
-              <div className="w-full relative aspect-square rounded">
-                <Image
-                  fill
-                  src={prediction.output[prediction.output.length - 1]}
-                  alt="output"
-                  sizes="100vw"
-                  className="rounded-lg"
-                />
-              </div>
-              <div className="flex py-2">
-                <Button onClick={handleDownloadImage} className="w-full">
-                  Download image
-                </Button>
-              </div>
+          <div>
+            <div className="flex py-2">
+              <Button
+                onClick={handleDownloadImage}
+                variant={"outline"}
+                className="w-full"
+              >
+                <Download className="mr-2 h-5 w-5" />
+                Download image
+              </Button>
             </div>
-          )}
+          </div>
         </div>
-      )}
+      </div>
     </main>
   );
 }

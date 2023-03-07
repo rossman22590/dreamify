@@ -13,7 +13,16 @@ export async function POST(request: NextRequest) {
   const body: RequestBody = await request.json();
   const prompt: string = body.prompt;
 
-  // TODO: Verify that prompt is not empty and that is less than 42 characters.
+  if (!prompt) {
+    return NextResponse.json({ detail: "Prompt is required" }, { status: 400 });
+  }
+
+  if (prompt.length > 42) {
+    return NextResponse.json(
+      { detail: "Prompt must be less than 42 characters" },
+      { status: 400 }
+    );
+  }
 
   // TODO: Allow 6 generated images per IP per day.
 

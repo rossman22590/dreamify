@@ -4,6 +4,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Download, Flower2, Loader2, Wand2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -12,11 +21,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
  * @description The status of a prediction not related to the Replicate API
  * @type {string}
  */
-type PredictionStatus =
-  | "initial"
-  | "loading"
-  | "error"
-  | "succeeded";
+type PredictionStatus = "initial" | "loading" | "error" | "succeeded";
 
 export default function Page() {
   const [prompt, setPrompt] = useState<string>("");
@@ -25,6 +30,7 @@ export default function Page() {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [predictionStatus, setPredictionStatus] =
     useState<PredictionStatus>("initial");
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const replaceSpacesWithDashes = (str: string) => {
     return str.replace(/\s+/g, "-").toLowerCase();
@@ -63,6 +69,7 @@ export default function Page() {
     if (response.status !== 201) {
       setError(prediction.detail);
       setPredictionStatus("error");
+      setIsAlertOpen(true);
       return;
     }
     setPrediction(prediction);
@@ -79,6 +86,7 @@ export default function Page() {
       if (response.status !== 200) {
         setError(prediction.detail);
         setPredictionStatus("error");
+        setIsAlertOpen(true);
         return;
       }
       if (prediction.status === "succeeded") {
@@ -121,15 +129,21 @@ export default function Page() {
               />
             ) : (
               <>
-                {(prediction && prediction.status === "processing") || (prediction && prediction.status === "starting") ? (
+                {(prediction && prediction.status === "processing") ||
+                (prediction && prediction.status === "starting") ? (
                   <Loader2 className="mr-2 h-12 w-12 animate-spin text-slate-700 dark:text-white" />
                 ) : (
                   <Flower2 className="h-12 w-12 text-slate-700" />
                 )}
-                <p className="text-slate-700" role="status">
-                  {prediction && prediction.status === "starting" && "Starting the model..."}
-                  {prediction && prediction.status === "processing" && "Creating the image..."}
-                  {predictionStatus === "initial" && "Here you can see the generated image..." }
+                <p className="text-slate-700 text-center px-8" role="status">
+                  {prediction &&
+                    prediction.status === "starting" &&
+                    "Starting the model..."}
+                  {prediction &&
+                    prediction.status === "processing" &&
+                    "Creating the image..."}
+                  {predictionStatus === "initial" &&
+                    "Here you can see the generated image..."}
                   {predictionStatus === "error" && error}
                 </p>
               </>
@@ -149,6 +163,17 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <AlertDialog onOpenChange={setIsAlertOpen} open={isAlertOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Error</AlertDialogTitle>
+            <AlertDialogDescription>{error}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction>Accept</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </main>
   );
 }

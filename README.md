@@ -1,38 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img
+    src=".github/logo.png"
+    align="center"
+    width="100"
+    alt="Dreamify"
+    title="Dreamify"
+  />
+  <h1 align="center">Dreamify</h1>
+</p>
 
-## Getting Started
+<p align="center">
+  Dreamify is a web application that allows you to generate images with AI.
+</p>
 
-First, run the development server:
+## 🚀 Concept
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Dreamify is a web application that allows you to generate images with AI. It uses the [Stable Diffusion](https://stability.ai/blog/stable-diffusion-public-release) model to generate images. The model is run on cloud with [Replicate](https://replicate.com/).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📦 Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Dreamify is deployed on [Vercel](https://vercel.com/).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🤲 Contributing
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Dreamify is an open source project.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+If you want to be the author of a new feature, fix a bug or contribute with something new.
 
-## Learn More
+Fork the repository and make changes as you like. [Pull requests](https://github.com/360macky/dreamify/pulls) are warmly welcome.
 
-To learn more about Next.js, take a look at the following resources:
+## 📃 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Distributed under the MIT License.
+See [`LICENSE`](./LICENSE) for more information.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -19,9 +19,14 @@ export const metadata = {
     siteName: "Dreamify",
     images: [
       {
-        url: "https://dreamify-art.vercel.app/",
+        url: "https://dreamify-art.vercel.app/cover.png",
         width: 800,
         height: 600,
+      },
+      {
+        url: "https://dreamify-art.vercel.app/cover_lg.png",
+        width: 1800,
+        height: 1600,
       },
     ],
     type: "website",

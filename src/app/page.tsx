@@ -4,37 +4,72 @@ import { Button } from "@/components/ui/Button";
 import { Wand2 } from "lucide-react";
 import { Cog } from "lucide-react";
 
+import Sunset from "../assets/sunset.png";
+import Space from "../assets/space.png";
+
 export default function Home() {
   return (
     <main className="px-4 lg:px-0 flex justify-center flex-col items-center">
-      <div className="flex justify-center flex-col items-center py-12 gap-y-6">
-        <h1 className="text-7xl font-extrabold text-center">
-          Describe your dream,
-          <br />
-          generate an image
+      <section className="flex justify-center flex-col items-center py-6 lg:py-12 gap-y-6 lg:gap-y-12">
+        <h1 className="text-4xl lg:text-7xl font-extrabold text-center leading-snug lg:leading-tight">
+          Generates an{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-tr from-blue-400 to-blue-600">
+            image
+          </span>{" "}
+          <br className="hidden lg:inline-block" /> just from{" "}
+          <span className="bg-black text-white">[text]</span>
         </h1>
-        <p className="text-xl text-slate-800 dark:text-slate-200">
-          Powered by <span>Stable Diffusion</span> with <span>Replicate</span>
+        <p className=" lg:text-xl text-slate-800 dark:text-slate-200 text-center">
+          Powered by{" "}
+          <a
+            href="/"
+            target="_blank"
+            className="hover:underline underline-offset-4"
+          >
+            Stable Diffusion
+          </a>{" "}
+          with{" "}
+          <a
+            href="/"
+            target="_blank"
+            className="hover:underline underline-offset-4"
+          >
+            Replicate
+          </a>
         </p>
         {/*
           Statically Typed Link 
           https://nextjs.org/blog/next-13-2#statically-typed-links
          */}
-        <div className="flex flex-row gap-x-2">
+        <div className="flex flex-col w-full lg:w-auto lg:flex-row gap-x-2 gap-y-2">
           <Link href="/generate">
-            <Button size={"lg"} className="text-lg">
+            <Button size={"lg"} className="text-lg w-full">
               <Wand2 className="mr-2 h-5 w-5" />
               Open generator
             </Button>
           </Link>
           <Link href="/">
-            <Button variant={"outline"} size={"lg"} className="text-lg">
+            <Button variant={"outline"} size={"lg"} className="text-lg w-full">
               <Cog className="mr-2 h-5 w-5" />
               How to use
             </Button>
           </Link>
         </div>
-      </div>
+      </section>
+      <section className="max-w-3xl">
+        <div className="flex flex-col lg:flex-row gap-x-4">
+          <Image
+            src={Sunset}
+            alt="Sunset of Rio"
+            className="rounded-lg hover:scale-105 transition"
+          />
+          <Image
+            src={Space}
+            alt="Space with the Earth"
+            className="rounded-lg hover:scale-105 transition"
+          />
+        </div>
+      </section>
     </main>
   );
 }

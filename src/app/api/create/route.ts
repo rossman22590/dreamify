@@ -17,6 +17,9 @@ export async function POST(request: NextRequest) {
 
   // TODO: Allow 6 generated images per IP per day.
 
+  // TODO: Create a cancel prediction endpoint that allows the user to cancel a prediction.
+  // https://replicate.com/docs/reference/http#cancel-prediction
+
   const response = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
     headers: {

@@ -54,7 +54,9 @@ export default function Page() {
     e.preventDefault();
 
     if (prompt === "") {
-      window.alert("Please enter a prompt");
+      setError("Write a prompt to generate an image.");
+      setPredictionStatus("error");
+      setIsAlertOpen(true);
       return;
     }
 
@@ -104,8 +106,8 @@ export default function Page() {
         className="flex flex-col lg:flex-row gap-y-2 m-auto max-w-lg gap-x-2"
       >
         <Input
-          type={"text"}
-          placeholder={"Enter a prompt to display an image"}
+          type="text"
+          placeholder="Write a description of the image you imagine"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           maxLength={42}
@@ -118,7 +120,7 @@ export default function Page() {
 
       <div className="m-auto max-w-lg mt-3 lg:mt-6">
         <div>
-          <div className="w-full relative aspect-square rounded bg-slate-100 flex flex-col justify-center items-center gap-y-4">
+          <div className="w-full relative aspect-square rounded bg-slate-100 dark:bg-slate-900 flex flex-col justify-center items-center gap-y-4">
             {prediction && prediction.output ? (
               <Image
                 fill
@@ -133,9 +135,12 @@ export default function Page() {
                 (prediction && prediction.status === "starting") ? (
                   <Loader2 className="mr-2 h-12 w-12 animate-spin text-slate-700 dark:text-white" />
                 ) : (
-                  <Flower2 className="h-12 w-12 text-slate-700" />
+                  <Flower2 className="h-12 w-12 text-slate-700 dark:text-white" />
                 )}
-                <p className="text-slate-700 text-center px-8" role="status">
+                <p
+                  className="text-slate-700 text-center px-8 dark:text-white"
+                  role="status"
+                >
                   {prediction &&
                     prediction.status === "starting" &&
                     "Starting the model..."}

@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../assets/logo.png";
 
 /**
  * @name metadata
@@ -26,7 +27,11 @@ export default function RootLayout({
       <body>
         <header className="flex flex-row items-center gap-x-4 justify-center">
           <Link href="/" className="flex flex-row items-center gap-x-4">
-            <ImageIcon className="h-10 w-10 text-blue-600 dark:text-blue-400" />
+            <Image
+              src={Logo}
+              alt="Dreamify logo"
+              className="h-12 w-12 select-none"
+            />
             <h1 className="text-4xl leading-normal text-center my-3 lg:my-8 font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-700 select-none dark:from-white dark:to-white">
               Dreamify
             </h1>

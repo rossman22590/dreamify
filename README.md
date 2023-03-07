@@ -33,4 +33,3 @@ Fork the repository and make changes as you like. [Pull requests](https://github
 
 Distributed under the MIT License.
 See [`LICENSE`](./LICENSE) for more information.
-

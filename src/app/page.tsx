@@ -22,7 +22,7 @@ export default function Home() {
          */}
         <div className="flex flex-row gap-x-2">
           <Link href="/generate">
-            <Button variant={"subtle"} size={"lg"} className="text-lg">
+            <Button size={"lg"} className="text-lg">
               <Wand2 className="mr-2 h-5 w-5" />
               Open generator
             </Button>

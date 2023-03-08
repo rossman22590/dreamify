@@ -33,6 +33,36 @@ Dreamify is built with [Tailwind CSS](https://tailwindcss.com/). Components like
 
 Dreamify is deployed on [Vercel](https://vercel.com/).
 
+## 🚀 Core Development
+
+Dreamify is built with [Next.js 13.2](https://nextjs.org/), [React](https://reactjs.org/) and [Tailwind CSS](https://tailwindcss.com/).
+
+Since it's the latest build of Next.js, it uses many of the new features like [Image Component](https://nextjs.org/docs/api-reference/next/image), [File System Routing](https://nextjs.org/docs/routing/introduction) and [Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration).
+
+If you want to run Dreamify locally, after clone this repository and run the following commands:
+
+```bash
+# Install dependencies
+npm install
+
+# Create .env.local
+touch .env.local
+```
+
+In order to run Stable Diffusion model, you need to create an account on [Replicate](https://replicate.com/) and get your API Key.
+
+Then, add the following environment variables to `.env.local`:
+
+```bash
+REPLICATE_API_TOKEN="YOUR_API_KEY"
+```
+
+And that's it! Now you can run the following command to start the development server:
+
+```bash
+npm run dev
+```
+
 ## 🤲 Contributing
 
 Dreamify is an open source project.

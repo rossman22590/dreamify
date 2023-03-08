@@ -58,7 +58,7 @@ export default function RootLayout({
         {children}
         <footer className="bg-white md:flex dark:bg-black mt-12 border border-t-slate-600 border-transparent">
           <div className="m-auto max-w-4xl md:py-4 flex w-full flex-col justify-center md:flex-row md:justify-between">
-            <div className="flex justify-center items-center mt-3">
+            <div className="flex justify-center items-center mt-3 md:mt-0">
               <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
                 © 2023 Dreamify. Created by{" "}
                 <a
@@ -70,13 +70,13 @@ export default function RootLayout({
                 </a>
               </span>
             </div>
-            <div>
-              <ul className="flex flex-wrap justify-center my-3 items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+            <div className="flex justify-center">
+              <ul className="flex flex-wrap justify-center my-3 md:my-0 items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
                 <li>
                   <a
                     href="https://github.com/360macky/dreamify"
                     target="_blank"
-                    className="mr-4 hover:underline md:mr-6 "
+                    className="mr-4 hover:underline md:mr-6 underline-offset-4"
                   >
                     Repository
                   </a>
@@ -85,7 +85,7 @@ export default function RootLayout({
                   <a
                     href="https://github.com/360macky/dreamify/blob/main/LICENSE"
                     target="_blank"
-                    className="mr-4 hover:underline md:mr-6"
+                    className="mr-4 hover:underline md:mr-6 underline-offset-4"
                   >
                     License
                   </a>

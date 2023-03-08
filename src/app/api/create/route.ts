@@ -5,8 +5,8 @@ type RequestBody = {
   prompt: string;
 };
 
-// 4 requests per hour
-const REQUESTS_PER_INTERVAL = 2;
+// 5 requests per hour
+const REQUESTS_PER_INTERVAL = 5;
 const INTERVAL = 60 * 1000 * 60;
 const limiter = rateLimit({ interval: INTERVAL });
 

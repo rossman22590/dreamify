@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ detail: "Prompt is required" }, { status: 400 });
   }
 
-  if (prompt.length > 42) {
+  if (prompt.length >= 84) {
     return NextResponse.json(
       { detail: "Prompt must be less than 42 characters" },
       { status: 400 }

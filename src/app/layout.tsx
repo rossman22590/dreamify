@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../assets/logo.png";
 import { Github, Twitter } from "lucide-react";
+import { Analytics } from '@vercel/analytics/react';
 
 /**
  * @name metadata
@@ -95,6 +96,7 @@ export default function RootLayout({
             </div>
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

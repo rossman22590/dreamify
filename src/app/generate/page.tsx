@@ -187,7 +187,7 @@ export default function Page() {
               </>
             )}
           </div>
-          {predictionStatus === "loading" && (
+          {predictionStatus === "succeeded" && (
             <div>
               <div className="flex flex-col lg:flex-row gap-y-2 py-2 gap-x-2">
                 <Button

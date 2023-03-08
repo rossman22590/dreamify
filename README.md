@@ -13,6 +13,8 @@
   Dreamify is a web application that allows you to generate images with AI.
 </p>
 
+![Dreamify Preview](./.github/preview.png)
+
 ## 🚀 Concept
 
 Dreamify is a web application that allows you to generate images with AI. It uses the [Stable Diffusion](https://stability.ai/blog/stable-diffusion-public-release) model to generate images. The model is run on cloud with [Replicate](https://replicate.com/).

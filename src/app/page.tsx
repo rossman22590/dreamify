@@ -63,12 +63,12 @@ export default function Home() {
           <Image
             src={Sunset}
             alt="Sunset of Rio"
-            className="rounded-lg hover:scale-105 transition"
+            className="rounded-lg hover:md:scale-105 transition"
           />
           <Image
             src={Space}
             alt="Space with the Earth"
-            className="rounded-lg hover:scale-105 transition"
+            className="rounded-lg hover:md:scale-105 transition"
           />
         </div>
       </section>

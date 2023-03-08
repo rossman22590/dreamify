@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../assets/logo.png";
+import { Github, Twitter } from "lucide-react";
 
 /**
  * @name metadata
@@ -71,23 +72,23 @@ export default function RootLayout({
               </span>
             </div>
             <div className="flex justify-center">
-              <ul className="flex flex-wrap justify-center my-3 md:my-0 items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-                <li>
+              <ul className="flex flex-wrap justify-center my-3 md:my-0 items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0 gap-x-2">
+                <li className="flex justify-center">
                   <a
                     href="https://github.com/360macky/dreamify"
                     target="_blank"
-                    className="mr-4 hover:underline md:mr-6 underline-offset-4"
+                    className="hover:underline underline-offset-4"
                   >
-                    Repository
+                    <Github className="hover:text-white" />
                   </a>
                 </li>
-                <li>
+                <li className="flex justify-center">
                   <a
                     href="https://github.com/360macky/dreamify/blob/main/LICENSE"
                     target="_blank"
-                    className="mr-4 hover:underline md:mr-6 underline-offset-4"
+                    className="hover:underline underline-offset-4"
                   >
-                    License
+                    <Twitter className="hover:text-white" />
                   </a>
                 </li>
               </ul>

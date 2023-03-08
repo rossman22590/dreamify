@@ -14,11 +14,11 @@ import { Analytics } from '@vercel/analytics/react';
 export const metadata = {
   title: "Dreamify",
   description:
-    "A simple generator of images from AI. Using Stable Diffusion. Built on Next.js 13.2",
+    "A simple generator of images with AI. Using Stable Diffusion. Built on Next.js 13.2",
   keywords: ["stable-diffusion", "machine-learning"],
   generator: "Next.js",
   openGraph: {
-    siteName: "Dreamify",
+    siteName: "Dreamify - A simple generator of images with AI.",
     images: [
       {
         url: "https://dreamify-art.vercel.app/cover.png",
@@ -33,6 +33,16 @@ export const metadata = {
     ],
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    images: [
+      {
+        url: "https://dreamify-art.vercel.app/cover_lg.png",
+        width: 1800,
+        height: 1600,
+      }
+    ]
+  }
 };
 
 const inter = Inter({ subsets: ["latin"] });

@@ -50,12 +50,12 @@ export default function Home() {
               Open generator
             </Button>
           </Link>
-          <Link href="/">
+          {/* <Link href="/">
             <Button variant={"outline"} size={"lg"} className="text-lg w-full">
               <Cog className="mr-2 h-5 w-5" />
               How to use
             </Button>
-          </Link>
+          </Link> */}
         </div>
       </section>
       <section className="max-w-3xl">

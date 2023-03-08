@@ -84,7 +84,7 @@ export default function RootLayout({
                 </li>
                 <li className="flex justify-center">
                   <a
-                    href="https://github.com/360macky/dreamify/blob/main/LICENSE"
+                    href="https://twitter.com/360macky"
                     target="_blank"
                     className="hover:underline underline-offset-4"
                   >

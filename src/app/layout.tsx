@@ -95,7 +95,7 @@ export default function RootLayout({
                 </li>
                 <li className="flex justify-center">
                   <a
-                    href="https://twitter.com/360macky"
+                    href="https://twitter.com/360macky/status/1633454258660995072"
                     target="_blank"
                     className="hover:underline underline-offset-4"
                   >

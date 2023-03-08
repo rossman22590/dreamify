@@ -62,28 +62,19 @@ export default function Page() {
     return Number(lastPercentage);
   };
 
-  const isUserOnMobile =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
-
   const handleShare = async () => {
-    if (isUserOnMobile) {
-      const blob = await fetch(imageUrl).then((r) => r.blob());
-      const filesArray = [
-        new File([blob], `${replaceSpacesWithDashes(prompt)}.png`, {
-          type: "image/jpeg",
-          lastModified: new Date().getTime(),
-        }),
-      ];
-      navigator.share({
-        title: `${prompt} - dreamify.art`,
-        text: `${prompt} - dreamify.art`,
-        files: filesArray,
-      });
-    } else {
-      handleDownloadImage();
-    }
+    const blob = await fetch(imageUrl).then((r) => r.blob());
+    const filesArray = [
+      new File([blob], `${replaceSpacesWithDashes(prompt)}.png`, {
+        type: "image/jpeg",
+        lastModified: new Date().getTime(),
+      }),
+    ];
+    navigator.share({
+      title: `${prompt} - dreamify.art`,
+      text: `${prompt} - dreamify.art`,
+      files: filesArray,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -196,7 +187,7 @@ export default function Page() {
               </>
             )}
           </div>
-          {predictionStatus === "succeeded" && (
+          {predictionStatus === "loading" && (
             <div>
               <div className="flex flex-col lg:flex-row gap-y-2 py-2 gap-x-2">
                 <Button
@@ -207,16 +198,14 @@ export default function Page() {
                   <Download className="mr-2 h-5 w-5" />
                   Download image
                 </Button>
-                {isUserOnMobile && (
                   <Button
                     onClick={handleShare}
                     variant={"outline"}
-                    className="w-full"
+                    className="w-full flex sm:hidden"
                   >
                     <Share className="mr-2 h-5 w-5" />
                     Share
                   </Button>
-                )}
               </div>
             </div>
           )}

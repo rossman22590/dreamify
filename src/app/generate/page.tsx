@@ -135,13 +135,13 @@ export default function Page() {
       >
         <Input
           type="text"
-          placeholder="Write a description of the image you imagine"
+          placeholder="Describe what you want"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           maxLength={42}
           disabled={predictionStatus === "loading"}
         />
-        <Button type="submit">
+        <Button type="submit" className="text-[16px] sm:text-sm">
           <Wand2 className="mr-2 h-5 w-5" />
           {predictionStatus === "loading" ? "Generating" : "Generate"}
         </Button>

@@ -2,10 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Wand2 } from "lucide-react";
-import { Cog } from "lucide-react";
 
 import Sunset from "../assets/sunset.png";
 import Space from "../assets/space.png";
+import Flower from "../assets/flower.png";
 
 export default function Home() {
   return (
@@ -59,16 +59,24 @@ export default function Home() {
         </div>
       </section>
       <section className="max-w-3xl">
-        <div className="flex flex-col lg:flex-row gap-x-4">
+        <div className="flex flex-col lg:flex-row gap-x-4 gap-y-4">
           <Image
             src={Sunset}
             alt="Sunset of Rio"
-            className="rounded-lg hover:md:scale-105 transition"
+            title="Sunset of Rio"
+            className="rounded-lg hover:md:scale-105 transition lg:h-64 lg:w-64"
           />
           <Image
             src={Space}
             alt="Space with the Earth"
-            className="rounded-lg hover:md:scale-105 transition"
+            title="Space with the Earth"
+            className="rounded-lg hover:md:scale-105 transition lg:h-64 lg:w-64"
+          />
+          <Image
+            src={Flower}
+            alt="Red flower"
+            title="Red flower"
+            className="rounded-lg hover:md:scale-105 transition lg:h-64 lg:w-64"
           />
         </div>
       </section>

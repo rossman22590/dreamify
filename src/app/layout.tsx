@@ -90,7 +90,7 @@ export default function RootLayout({
                     target="_blank"
                     className="hover:underline underline-offset-4"
                   >
-                    <Github className="hover:text-white" />
+                    <Github className="hover:text-black dark:hover:text-white" />
                   </a>
                 </li>
                 <li className="flex justify-center">
@@ -99,7 +99,7 @@ export default function RootLayout({
                     target="_blank"
                     className="hover:underline underline-offset-4"
                   >
-                    <Twitter className="hover:text-white" />
+                    <Twitter className="hover:text-black dark:hover:text-white" />
                   </a>
                 </li>
               </ul>

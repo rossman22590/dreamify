@@ -22,7 +22,7 @@ export default function Home() {
           </span>
         </h1>
         <p className="lg:text-lg text-slate-800 dark:text-slate-200 text-center border dark:border-white px-8 py-1 rounded-full">
-          Generated over <b>100</b> images!
+          Generated over <b>150</b> images!
         </p>
         <p className="lg:text-xl text-slate-800 dark:text-slate-200 text-center hidden">
           Powered by{" "}

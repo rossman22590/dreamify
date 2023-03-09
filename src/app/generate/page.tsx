@@ -198,14 +198,14 @@ export default function Page() {
                   <Download className="mr-2 h-5 w-5" />
                   Download image
                 </Button>
-                  <Button
-                    onClick={handleShare}
-                    variant={"outline"}
-                    className="w-full flex sm:hidden"
-                  >
-                    <Share className="mr-2 h-5 w-5" />
-                    Share
-                  </Button>
+                <Button
+                  onClick={handleShare}
+                  variant={"outline"}
+                  className="w-full flex sm:hidden"
+                >
+                  <Share className="mr-2 h-5 w-5" />
+                  Share
+                </Button>
               </div>
             </div>
           )}

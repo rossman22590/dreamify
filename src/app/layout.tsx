@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "../assets/logo.png";
 import { Github, Twitter } from "lucide-react";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 /**
  * @name metadata
@@ -40,9 +40,9 @@ export const metadata = {
         url: "https://dreamify-art.vercel.app/cover_lg.png",
         width: 1800,
         height: 1600,
-      }
-    ]
-  }
+      },
+    ],
+  },
 };
 
 const inter = Inter({ subsets: ["latin"] });

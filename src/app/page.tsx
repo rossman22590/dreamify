@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import { Wand2 } from "lucide-react";
+import { Rocket, Wand2 } from "lucide-react";
 
 import Sunset from "../assets/sunset.png";
 import Space from "../assets/space.png";
@@ -21,7 +21,10 @@ export default function Home() {
             [text]
           </span>
         </h1>
-        <p className=" lg:text-xl text-slate-800 dark:text-slate-200 text-center">
+        <p className="lg:text-lg text-slate-800 dark:text-slate-200 text-center border dark:border-white px-8 py-1 rounded-full">
+          Generated over <b>100</b> images!
+        </p>
+        <p className="lg:text-xl text-slate-800 dark:text-slate-200 text-center hidden">
           Powered by{" "}
           <a
             href="/"

@@ -21,8 +21,8 @@ export default function Home() {
             [text]
           </span>
         </h1>
-        <p className="lg:text-lg text-slate-800 dark:text-slate-200 text-center border dark:border-white px-8 py-1 rounded-full">
-          Generated over <b>300</b> images!
+        <p className="lg:text-lg text-slate-600 dark:text-slate-200 text-center border dark:border-white px-8 py-1 rounded-full">
+          Generated over <b>400</b> images!
         </p>
         <p className="lg:text-xl text-slate-800 dark:text-slate-200 text-center hidden">
           Powered by{" "}

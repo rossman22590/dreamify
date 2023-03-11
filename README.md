@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  Dreamify is a web application that allows you to generate images with AI.
+  🌈 Dreamify is a web application that allows you to generate images with AI 🎨
 </p>
 
 ![Dreamify Preview](./.github/preview.png)

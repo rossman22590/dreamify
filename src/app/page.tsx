@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import { Rocket, Wand2 } from "lucide-react";
+import { Wand2 } from "lucide-react";
 
 import Sunset from "../assets/sunset.png";
 import Space from "../assets/space.png";

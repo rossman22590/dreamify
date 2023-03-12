@@ -42,10 +42,6 @@ export default function Home() {
             Replicate
           </a>
         </p>
-        {/*
-          Statically Typed Link 
-          https://nextjs.org/blog/next-13-2#statically-typed-links
-         */}
         <div className="flex flex-col w-full lg:w-auto lg:flex-row gap-x-2 gap-y-2">
           <Link href="/generate">
             <Button size={"lg"} className="text-lg w-full">
@@ -53,12 +49,6 @@ export default function Home() {
               Open generator
             </Button>
           </Link>
-          {/* <Link href="/">
-            <Button variant={"outline"} size={"lg"} className="text-lg w-full">
-              <Cog className="mr-2 h-5 w-5" />
-              How to use
-            </Button>
-          </Link> */}
         </div>
       </section>
       <section className="max-w-3xl">

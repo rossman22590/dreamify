@@ -13,6 +13,10 @@
   🌈 Dreamify is a web application that allows you to generate images with AI 🎨
 </p>
 
+<p align="center">
+  🚀 Over 500 generations!
+</p>
+
 ![Dreamify Preview](./.github/preview.png)
 
 ## 🚀 Concept

@@ -1,6 +1,4 @@
-import type { NextApiResponse } from "next";
 import LRU from "lru-cache";
-import { NextResponse } from "next/server";
 
 type Options = {
   uniqueTokenPerInterval?: number;
@@ -15,7 +13,7 @@ type Options = {
  */
 export default function rateLimit(options?: Options) {
   const tokenCache = new LRU({
-    max: options?.uniqueTokenPerInterval || 500, // Max 500 users per second
+    max: options?.uniqueTokenPerInterval || 500,
     ttl: options?.interval || 60000,
   });
 
@@ -28,19 +26,17 @@ export default function rateLimit(options?: Options) {
       tokenCount[0] += 1;
 
       const currentUsage = tokenCount[0];
-      const isRateLimited = currentUsage >= limit;
+      const isLimitExceeded = currentUsage >= limit;
 
       const responseHeaders: HeadersInit = {
         "X-RateLimit-Limit": `${limit}`,
-        "X-RateLimit-Remaining": `${isRateLimited ? 0 : limit - currentUsage}`,
+        "X-RateLimit-Remaining": `${
+          isLimitExceeded ? 0 : limit - currentUsage
+        }`,
         "X-RateLimit-Reset": `${Date.now() + 60000}`,
       };
 
-      if (isRateLimited) {
-        return { isLimitExceeded: true, responseHeaders };
-      } else {
-        return { isLimitExceeded: false, responseHeaders };
-      }
+      return { isLimitExceeded, responseHeaders };
     },
   };
 }

@@ -156,10 +156,10 @@ export default function Page() {
   };
 
   return (
-    <main className="px-4 py-4 min-h-[60vh] flex flex-col lg:flex-row m-auto max-w-4xl gap-x-4">
+    <main className="px-4 py-4 min-h-[60vh] flex flex-col lg:flex-row m-auto max-w-5xl gap-x-4">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col w-full m-auto lg:m-0 max-w-sm"
+        className="flex flex-col w-full m-auto lg:m-0 max-w-lg"
       >
         <div className="flex flex-col lg:flex-row gap-y-2  gap-x-2 w-full">
           <Input
@@ -196,8 +196,8 @@ export default function Page() {
             "hidden": !isAdvancedPromptEnabled,
           })}>
             <div>
-              <Label htmlFor="negativePrompt" className="text-sm">Negative Prompt</Label>
-              <Input type="text" id="negativePrompt" placeholder="Specify things to not see in the output" className="mt-2" value={advancedPrompt.negativePrompt}
+              <Label htmlFor="negativePrompt">Negative Prompt: Specify things you do not want not see</Label>
+              <Input type="text" id="negativePrompt" placeholder="" className="mt-2" value={advancedPrompt.negativePrompt}
                 onChange={(e) => {
                   setAdvancedPrompt({
                     ...advancedPrompt,
@@ -209,7 +209,7 @@ export default function Page() {
             </div>
             <div className="flex gap-x-4">
               <div>
-                <Label htmlFor="inferenceSteps" className="text-sm">Number of denoising steps (minimum: 1; maximum: 500)</Label>
+                <Label htmlFor="inferenceSteps">Number of denoising steps (minimum: 1; maximum: 500)</Label>
                 <Input type="number" id="inferenceSteps" placeholder="Inference steps" className="mt-2" value={advancedPrompt.inferenceSteps}
                   onChange={(e) => {
                     setAdvancedPrompt({
@@ -220,7 +220,7 @@ export default function Page() {
                 />
               </div>
               <div>
-                <Label htmlFor="seed" className="text-sm">Random seed. Leave blank to randomize the seed</Label>
+                <Label htmlFor="seed">Random seed. Leave blank to randomize the seed</Label>
                 <Input type="number" id="seed" placeholder="0" className="mt-2" value={advancedPrompt.seed}
                   onChange={(e) => {
                     setAdvancedPrompt({
@@ -232,7 +232,7 @@ export default function Page() {
               </div>
             </div>
             <div className="flex flex-col gap-y-2  w-full">
-              <Label htmlFor="email" className="text-sm">Scheduler</Label>
+              <Label htmlFor="email">Scheduler</Label>
               <Select defaultValue="k_euler" onValueChange={(value: Scheduler) => {
                 setAdvancedPrompt({
                   ...advancedPrompt,

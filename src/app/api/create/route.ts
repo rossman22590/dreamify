@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import rateLimit from "@/utils/rate-limit";
 
+type Scheduler = "DDIM" | "K_EULER" | "DPMSolverMultistep";
+
 type RequestBody = {
   prompt: string;
+  advancedPrompt: {
+    negativePrompt: string;
+    scheduler: Scheduler;
+    inferenceSteps: number;
+    seed: number;
+  };
 };
 
 // 8 requests per hour
@@ -23,6 +31,7 @@ const STABLE_DIFFUSION_VERSION =
 export async function POST(request: NextRequest) {
   const body: RequestBody = await request.json();
   const prompt: string = body.prompt;
+  const advancedPrompt = body.advancedPrompt;
 
   if (!prompt) {
     return NextResponse.json({ detail: "Prompt is required" }, { status: 400 });
@@ -70,7 +79,13 @@ export async function POST(request: NextRequest) {
     },
     body: JSON.stringify({
       version: STABLE_DIFFUSION_VERSION,
-      input: { prompt },
+      input: {
+        prompt,
+        negative_prompt: advancedPrompt.negativePrompt,
+        scheduler: advancedPrompt.scheduler,
+        num_inference_steps: advancedPrompt.inferenceSteps,
+        seed: advancedPrompt.seed,
+      },
     }),
   });
 

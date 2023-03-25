@@ -14,6 +14,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Label } from "@/components/ui/label";
+import {
+  Select, SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Switch } from "@radix-ui/react-switch";
+import classNames from "classnames";
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -24,6 +36,15 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
  */
 type PredictionStatus = "initial" | "loading" | "error" | "succeeded";
 
+type Scheduler = "DDIM" | "K_EULER" | "DPMSolverMultistep";
+
+interface AdvancedPrompt {
+  negativePrompt: string;
+  scheduler: Scheduler;
+  inferenceSteps: number;
+  seed: number;
+}
+
 export default function Page() {
   const [prompt, setPrompt] = useState<string>("");
   const [prediction, setPrediction] = useState<any>(null);
@@ -33,6 +54,13 @@ export default function Page() {
     useState<PredictionStatus>("initial");
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [percentage, setPercentage] = useState<number>(0);
+  const [isAdvancedPromptEnabled, setIsAdvancedPromptEnabled] = useState(false);
+  const [advancedPrompt, setAdvancedPrompt] = useState<AdvancedPrompt>({
+    negativePrompt: "",
+    scheduler: "K_EULER",
+    inferenceSteps: 50,
+    seed: 0,
+  });
 
   const replaceSpacesWithDashes = (str: string) => {
     return str.replace(/\s+/g, "-").toLowerCase();
@@ -92,7 +120,7 @@ export default function Page() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ prompt }),
+      body: JSON.stringify({ prompt, advancedPrompt }),
     });
     let prediction = await response.json();
     if (response.status !== 201) {
@@ -128,44 +156,121 @@ export default function Page() {
   };
 
   return (
-    <main className="px-4 min-h-[60vh]">
+    <main className="px-4 py-4 min-h-[60vh] flex flex-col lg:flex-row m-auto max-w-4xl gap-x-4">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col lg:flex-row gap-y-2 m-auto max-w-lg gap-x-2"
+        className="flex flex-col w-full m-auto lg:m-0 max-w-sm"
       >
-        <Input
-          type="text"
-          placeholder="Describe what you want"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          maxLength={84}
-          disabled={predictionStatus === "loading"}
-        />
-        <Button type="submit" className="text-[16px] sm:text-sm">
-          <Wand2 className="mr-2 h-5 w-5" />
-          {predictionStatus === "loading" ? "Generating" : "Generate"}
-        </Button>
+        <div className="flex flex-col lg:flex-row gap-y-2  gap-x-2 w-full">
+          <Input
+            type="text"
+            placeholder="Describe what you want"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            maxLength={84}
+            disabled={predictionStatus === "loading"}
+          />
+          <Button type="submit" className="text-[16px] sm:text-sm" disabled={predictionStatus === "loading"}>
+            <Wand2 className="mr-2 h-5 w-5" />
+            {predictionStatus === "loading" ? "Generating" : "Generate"}
+          </Button>
+        </div>
+        <div className="mt-3 lg:mt-3">
+          <Progress value={percentage} />
+        </div>
+        <div className="flex flex-col w-full mb-3 lg:mb-0">
+          <label className="inline-flex items-center mt-3">
+            <input
+              type="checkbox"
+              className="form-checkbox h-4 w-4 text-slate-600 dark:text-slate-400"
+              checked={isAdvancedPromptEnabled}
+              onChange={() =>
+                setIsAdvancedPromptEnabled(!isAdvancedPromptEnabled)
+              }
+            />
+            <span className="ml-2 text-sm text-slate-600 dark:text-slate-400">
+              Enable advanced features for prompts
+            </span>
+          </label>
+          <div className={classNames("flex flex-col gap-x-2 gap-y-2 py-4 px-4 border dark:border-slate-900 rounded mt-3 lg:mt-4", {
+            "hidden": !isAdvancedPromptEnabled,
+          })}>
+            <div>
+              <Label htmlFor="negativePrompt" className="text-sm">Negative Prompt</Label>
+              <Input type="text" id="negativePrompt" placeholder="Specify things to not see in the output" className="mt-2" value={advancedPrompt.negativePrompt}
+                onChange={(e) => {
+                  setAdvancedPrompt({
+                    ...advancedPrompt,
+                    negativePrompt: e.target.value,
+                  });
+                }}
+
+              />
+            </div>
+            <div className="flex gap-x-4">
+              <div>
+                <Label htmlFor="inferenceSteps" className="text-sm">Number of denoising steps (minimum: 1; maximum: 500)</Label>
+                <Input type="number" id="inferenceSteps" placeholder="Inference steps" className="mt-2" value={advancedPrompt.inferenceSteps}
+                  onChange={(e) => {
+                    setAdvancedPrompt({
+                      ...advancedPrompt,
+                      inferenceSteps: Number(e.target.value),
+                    });
+                  }}
+                />
+              </div>
+              <div>
+                <Label htmlFor="seed" className="text-sm">Random seed. Leave blank to randomize the seed</Label>
+                <Input type="number" id="seed" placeholder="0" className="mt-2" value={advancedPrompt.seed}
+                  onChange={(e) => {
+                    setAdvancedPrompt({
+                      ...advancedPrompt,
+                      seed: Number(e.target.value),
+                    });
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-y-2  w-full">
+              <Label htmlFor="email" className="text-sm">Scheduler</Label>
+              <Select defaultValue="k_euler" onValueChange={(value: Scheduler) => {
+                setAdvancedPrompt({
+                  ...advancedPrompt,
+                  scheduler: value,
+                });
+              }}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Select a scheduler" />
+                </SelectTrigger>
+                <SelectContent className="w-full">
+                  <SelectGroup>
+                    <SelectItem value="ddim" defaultChecked>DDIM</SelectItem>
+                    <SelectItem value="k_euler">K_EULER</SelectItem>
+                    <SelectItem value="dpmsolvermultistep">DPMSolverMultistep</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </div>
       </form>
 
-      <div className="m-auto max-w-lg mt-3 lg:mt-3">
-        <Progress value={percentage} />
-      </div>
-
-      <div className="m-auto max-w-lg mt-3 lg:mt-3">
+      <div className="m-auto max-w-lg lg:m-0 lg:flex-1">
         <div>
           <div className="w-full relative aspect-square rounded bg-slate-100 dark:bg-slate-900 flex flex-col justify-center items-center gap-y-4">
             {prediction && prediction.output ? (
               <Image
                 fill
                 src={prediction.output[prediction.output.length - 1]}
-                alt="output"
+                alt={prompt}
+                title={prompt}
                 sizes="100vw"
                 className="rounded-lg"
               />
             ) : (
               <>
                 {(prediction && prediction.status === "processing") ||
-                (prediction && prediction.status === "starting") ? (
+                  (prediction && prediction.status === "starting") ? (
                   <Loader2 className="mr-2 h-12 w-12 animate-spin text-slate-700 dark:text-white" />
                 ) : (
                   <Flower2 className="h-12 w-12 text-slate-700 dark:text-white" />

@@ -167,7 +167,7 @@ export default function Page() {
             placeholder="Describe what you want"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            maxLength={1500}
+            maxLength={600}
             disabled={predictionStatus === "loading"}
           />
           <Button type="submit" className="text-[16px] sm:text-sm" disabled={predictionStatus === "loading"}>

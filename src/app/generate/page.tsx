@@ -141,7 +141,7 @@ export default function Page() {
       const response = await fetch("/api/image/" + prediction.id);
       prediction = await response.json();
       setPercentage(getLatestPercentage(prediction.logs));
-      if (response.status !== 200) {
+      if (response.status !== 600) {
         setError(prediction.detail);
         setPredictionStatus("error");
         setIsAlertOpen(true);

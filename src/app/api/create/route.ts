@@ -14,11 +14,11 @@ type RequestBody = {
 };
 
 // 8 requests per hour
-const REQUESTS_PER_INTERVAL = 8;
+const REQUESTS_PER_INTERVAL = 10;
 const INTERVAL = 60 * 1000 * 60;
 const limiter = rateLimit({ interval: INTERVAL });
 
-const MAX_PROMPT_LENGTH = 84;
+const MAX_PROMPT_LENGTH = 200;
 
 const STABLE_DIFFUSION_VERSION =
   "9936c2001faa2194a261c01381f90e65261879985476014a0a37a334593a05eb";

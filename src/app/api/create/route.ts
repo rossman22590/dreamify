@@ -37,6 +37,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ detail: "Prompt is required" }, { status: 400 });
   }
 
+  let advancedPromptConfig;
+  // If there is no advancedPrompt, then we are using the default settings
+  if (!advancedPrompt) {
+    advancedPromptConfig = {
+      negative_prompt: "",
+      scheduler: "K_EULER",
+      num_inference_steps: 50,
+      seed: 0,
+    };
+  }
+
   if (prompt.length >= MAX_PROMPT_LENGTH) {
     return NextResponse.json(
       { detail: `Prompt must be less than ${MAX_PROMPT_LENGTH} characters` },
@@ -81,10 +92,7 @@ export async function POST(request: NextRequest) {
       version: STABLE_DIFFUSION_VERSION,
       input: {
         prompt,
-        negative_prompt: advancedPrompt.negativePrompt,
-        scheduler: advancedPrompt.scheduler,
-        num_inference_steps: advancedPrompt.inferenceSteps,
-        seed: advancedPrompt.seed,
+        ...advancedPromptConfig
       },
     }),
   });

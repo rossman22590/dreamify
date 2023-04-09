@@ -10,20 +10,20 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Install PostCSS and Tailwind CSS
-RUN npm install postcss postcss-cli tailwindcss
+# Install TailwindCSS and PostCSS
+RUN npm install -D tailwindcss postcss postcss-cli
+
+# Copy the Tailwind config file to the working directory
+COPY tailwind.config.js .
 
 # Copy the rest of the application files
 COPY . .
 
-# Set the NODE_ENV environment variable to production
-ENV NODE_ENV=production
+# Process the globals.css file with PostCSS and TailwindCSS
+RUN npx postcss src/app/globals.css -o public/globals.css --env production
 
-# Build the Next.js application
-RUN npm run build
-
-# Expose the port for the production server
+# Expose the port for the development server
 EXPOSE 3000
 
-# Start the production server
-CMD ["npm", "start"]
+# Start the development server
+CMD ["npm", "run", "dev"]

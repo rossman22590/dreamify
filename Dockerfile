@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+# Install PostCSS and Tailwind CSS
+RUN npm install postcss postcss-cli tailwindcss
+
 # Copy the rest of the application files
 COPY . .
 

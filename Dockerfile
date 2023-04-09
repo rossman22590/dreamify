@@ -13,8 +13,14 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
-# Expose the port for the development server
+# Set the NODE_ENV environment variable to production
+ENV NODE_ENV=production
+
+# Build the Next.js application
+RUN npm run build
+
+# Expose the port for the production server
 EXPOSE 3000
 
-# Start the development server
-CMD ["npm", "run", "dev"]
+# Start the production server
+CMD ["npm", "start"]

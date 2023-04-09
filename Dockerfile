@@ -10,8 +10,6 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Create the .env.local file
-RUN touch .env.local
 
 # Copy the rest of the application files
 COPY . .

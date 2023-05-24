@@ -21,7 +21,7 @@ const limiter = rateLimit({ interval: INTERVAL });
 const MAX_PROMPT_LENGTH = 84;
 
 const STABLE_DIFFUSION_VERSION =
-  "6359a0cab3ca6e4d3320c33d79096161208e9024d174b2311e5a21b6c7e1131c";
+  "db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf";
 
 /**
  * @name POST /api/create

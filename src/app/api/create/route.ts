@@ -13,12 +13,12 @@ type RequestBody = {
   };
 };
 
-// 8 requests per hour
-const REQUESTS_PER_INTERVAL = 8;
+// 800 requests per hour
+const REQUESTS_PER_INTERVAL = 800;
 const INTERVAL = 60 * 1000 * 60;
 const limiter = rateLimit({ interval: INTERVAL });
 
-const MAX_PROMPT_LENGTH = 84;
+const MAX_PROMPT_LENGTH = 8000;
 
 const STABLE_DIFFUSION_VERSION =
   "db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf";

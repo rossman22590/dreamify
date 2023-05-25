@@ -14,7 +14,7 @@ type RequestBody = {
 };
 
 // 800 requests per hour
-const REQUESTS_PER_INTERVAL = 800;
+const REQUESTS_PER_INTERVAL = 8;
 const INTERVAL = 60 * 1000 * 60;
 const limiter = rateLimit({ interval: INTERVAL });
 

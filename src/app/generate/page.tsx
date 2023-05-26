@@ -16,7 +16,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Label } from "@/components/ui/label";
 import {
-  Select, SelectContent,
+  Select,
+  SelectContent,
   SelectGroup,
   SelectItem,
   SelectLabel,
@@ -170,7 +171,11 @@ export default function Page() {
             maxLength={84}
             disabled={predictionStatus === "loading"}
           />
-          <Button type="submit" className="text-[16px] sm:text-sm" disabled={predictionStatus === "loading"}>
+          <Button
+            type="submit"
+            className="text-[16px] sm:text-sm"
+            disabled={predictionStatus === "loading"}
+          >
             <Wand2 className="mr-2 h-5 w-5" />
             {predictionStatus === "loading" ? "Generating" : "Generate"}
           </Button>
@@ -192,25 +197,43 @@ export default function Page() {
               Enable advanced features for prompts
             </span>
           </label>
-          <div className={classNames("flex flex-col gap-x-2 gap-y-2 py-4 px-4 border dark:border-slate-900 rounded mt-3 lg:mt-4", {
-            "hidden": !isAdvancedPromptEnabled,
-          })}>
+          <div
+            className={classNames(
+              "flex flex-col gap-x-2 gap-y-2 py-4 px-4 border dark:border-slate-900 rounded mt-3 lg:mt-4",
+              {
+                hidden: !isAdvancedPromptEnabled,
+              }
+            )}
+          >
             <div>
-              <Label htmlFor="negativePrompt">Negative Prompt: Specify things you do not want not see</Label>
-              <Input type="text" id="negativePrompt" placeholder="" className="mt-2" value={advancedPrompt.negativePrompt}
+              <Label htmlFor="negativePrompt">
+                Negative Prompt: Specify things you do not want not see
+              </Label>
+              <Input
+                type="text"
+                id="negativePrompt"
+                placeholder=""
+                className="mt-2"
+                value={advancedPrompt.negativePrompt}
                 onChange={(e) => {
                   setAdvancedPrompt({
                     ...advancedPrompt,
                     negativePrompt: e.target.value,
                   });
                 }}
-
               />
             </div>
             <div className="flex gap-x-4">
               <div>
-                <Label htmlFor="inferenceSteps">Number of denoising steps (minimum: 1; maximum: 500)</Label>
-                <Input type="number" id="inferenceSteps" placeholder="Inference steps" className="mt-2" value={advancedPrompt.inferenceSteps}
+                <Label htmlFor="inferenceSteps">
+                  Number of denoising steps (minimum: 1; maximum: 500)
+                </Label>
+                <Input
+                  type="number"
+                  id="inferenceSteps"
+                  placeholder="Inference steps"
+                  className="mt-2"
+                  value={advancedPrompt.inferenceSteps}
                   onChange={(e) => {
                     setAdvancedPrompt({
                       ...advancedPrompt,
@@ -220,8 +243,15 @@ export default function Page() {
                 />
               </div>
               <div>
-                <Label htmlFor="seed">Random seed. Leave blank to randomize the seed</Label>
-                <Input type="number" id="seed" placeholder="0" className="mt-2" value={advancedPrompt.seed}
+                <Label htmlFor="seed">
+                  Random seed. Leave blank to randomize the seed
+                </Label>
+                <Input
+                  type="number"
+                  id="seed"
+                  placeholder="0"
+                  className="mt-2"
+                  value={advancedPrompt.seed}
                   onChange={(e) => {
                     setAdvancedPrompt({
                       ...advancedPrompt,
@@ -233,20 +263,27 @@ export default function Page() {
             </div>
             <div className="flex flex-col gap-y-2  w-full">
               <Label htmlFor="email">Scheduler</Label>
-              <Select defaultValue="k_euler" onValueChange={(value: Scheduler) => {
-                setAdvancedPrompt({
-                  ...advancedPrompt,
-                  scheduler: value,
-                });
-              }}>
+              <Select
+                defaultValue="k_euler"
+                onValueChange={(value: Scheduler) => {
+                  setAdvancedPrompt({
+                    ...advancedPrompt,
+                    scheduler: value,
+                  });
+                }}
+              >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Select a scheduler" />
                 </SelectTrigger>
                 <SelectContent className="w-full">
                   <SelectGroup>
-                    <SelectItem value="ddim" defaultChecked>DDIM</SelectItem>
+                    <SelectItem value="ddim" defaultChecked>
+                      DDIM
+                    </SelectItem>
                     <SelectItem value="k_euler">K_EULER</SelectItem>
-                    <SelectItem value="dpmsolvermultistep">DPMSolverMultistep</SelectItem>
+                    <SelectItem value="dpmsolvermultistep">
+                      DPMSolverMultistep
+                    </SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
@@ -254,8 +291,7 @@ export default function Page() {
           </div>
         </div>
       </form>
-
-      <div className="m-auto max-w-lg lg:m-0 lg:flex-1">
+      <div className="lg:m-auto max-w-lg lg:m-0 lg:flex-1">
         <div>
           <div className="w-full relative aspect-square rounded bg-slate-100 dark:bg-slate-900 flex flex-col justify-center items-center gap-y-4">
             {prediction && prediction.output ? (
@@ -270,7 +306,7 @@ export default function Page() {
             ) : (
               <>
                 {(prediction && prediction.status === "processing") ||
-                  (prediction && prediction.status === "starting") ? (
+                (prediction && prediction.status === "starting") ? (
                   <Loader2 className="mr-2 h-12 w-12 animate-spin text-slate-700 dark:text-white" />
                 ) : (
                   <Flower2 className="h-12 w-12 text-slate-700 dark:text-white" />

@@ -54,15 +54,15 @@ export default function Home() {
       <section className="max-w-3xl">
         <div className="flex flex-col lg:flex-row gap-x-4 gap-y-4">
           <Image
-            src={Sunset}
-            alt="Sunset of Rio"
-            title="Sunset of Rio"
-            className="rounded-lg hover:md:scale-105 transition lg:h-64 lg:w-64"
-          />
-          <Image
             src={Space}
             alt="Space with the Earth"
             title="Space with the Earth"
+            className="rounded-lg hover:md:scale-105 transition lg:h-64 lg:w-64"
+          />
+          <Image
+            src={Sunset}
+            alt="Sunset of Rio"
+            title="Sunset of Rio"
             className="rounded-lg hover:md:scale-105 transition lg:h-64 lg:w-64"
           />
           <Image
